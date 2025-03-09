@@ -38,7 +38,7 @@ O **8QueensSolver** é um projeto desenvolvido em **Prolog** para resolver o pro
 
 3. Abra o arquivo `.pl` no interpretador Prolog:
    ```bash
-   swipl 8_rainhas.pl
+   swipl 8 rainhas ld.pl
    ```
 
 4. Execute o predicado principal para resolver o problema:
@@ -76,7 +76,7 @@ O código está organizado da seguinte forma:
 
 1. Inicie o interpretador Prolog:
    ```bash
-   swipl 8_rainhas.pl
+   swipl 8 rainhas ld.pl
    ```
 
 2. Execute o predicado `resolver`:
