@@ -1,21 +1,21 @@
 # 8QueensSolver
 
-O **8QueensSolver** é um projeto desenvolvido em **Prolog** para resolver o problema das 8 rainhas. O objetivo é posicionar 8 rainhas em um tabuleiro de xadrez de forma que nenhuma rainha ataque outra. Este projeto foi desenvolvido como parte de um desafio proposto pelo professor de Linguagens Declarativas, em colaboração com um time de três pessoas.
+O **8QueensSolver** é um projeto desenvolvido em **Prolog** para resolver o problema das 8 rainhas. O objetivo é posicionar 8 rainhas em um tabuleiro de xadrez de forma que nenhuma rainha ataque outra. Este projeto foi desenvolvido como parte de um desafio proposto pelo professor de Linguagens Declarativas.
 
 ---
 
 ## Funcionalidades
 
 - **Solução do Problema das 8 Rainhas**: Encontra todas as soluções possíveis para o problema das 8 rainhas.
-- **Impressão do Tabuleiro**: Exibe o tabuleiro com as rainhas posicionadas.
-- **Percorrimento de Linhas**: Função auxiliar para percorrer e imprimir as linhas do tabuleiro.
+- **Verificação de Segurança**: Implementa a lógica para verificar posições seguras para as rainhas.
+- **Backtracking Automático**: Utiliza o mecanismo de backtracking do Prolog para encontrar soluções.
 
 ---
 
 ## Tecnologias Utilizadas
 
 - **Prolog**: Linguagem de programação lógica usada para resolver o problema.
-- **Lógica de Predicados**: Uso de predicados para definir regras e soluções.
+- **Programação Declarativa**: Uso de predicados e regras lógicas para definir as soluções.
 
 ---
 
@@ -36,17 +36,20 @@ O **8QueensSolver** é um projeto desenvolvido em **Prolog** para resolver o pro
    cd 8QueensSolver
    ```
 
-3. Abra o arquivo `.pl` no interpretador Prolog:
+3. Abra o arquivo Prolog no interpretador:
    ```bash
-   swipl 8 rainhas ld.pl
+   swipl 8_Rainhas_Completo.pl
    ```
 
-4. Execute o predicado principal para resolver o problema:
+4. Execute o predicado principal para encontrar uma solução:
    ```prolog
-   resolver.
+   solucao(PosicoesDasRainhas).
    ```
 
-5. O tabuleiro com as rainhas posicionadas será exibido no terminal.
+5. Para ver todas as soluções, use:
+   ```prolog
+   findall(P, solucao(P), Solucoes), length(Solucoes, Total).
+   ```
 
 ---
 
@@ -56,19 +59,19 @@ O código está organizado da seguinte forma:
 
 ### Predicados Principais
 
-- **resolver/0**:
-  - Predicado principal que inicia a resolução do problema.
-  - Chama `matriz_inicial/1` para criar o tabuleiro e `colocar_rainhas/3` para posicionar as rainhas.
+- **solucao/1**:
+  - Predicado principal que encontra uma solução válida para o problema.
+  - Garante que a lista tenha 8 elementos e chama `rainhas/1`.
 
-- **matriz_inicial/1**:
-  - Define o tabuleiro inicial como uma matriz 8x8 com zeros.
+- **rainhas/1**:
+  - Predicado recursivo que posiciona cada rainha em uma coluna do tabuleiro.
+  - Usa `member/2` para escolher linhas válidas (1-8) para cada rainha.
 
-- **colocar_rainhas/3**:
-  - Predicado recursivo que posiciona as rainhas no tabuleiro.
-  - Quando todas as rainhas são posicionadas (`Linha_a_ser_colocada_a_rainha = 0`), a solução é retornada.
-
-- **percorrer_linhas/1**:
-  - Predicado auxiliar para percorrer e imprimir as linhas do tabuleiro.
+- **seguro/3**:
+  - Verifica se uma rainha pode ser posicionada com segurança:
+    - Não está na mesma linha que outras rainhas
+    - Não está nas diagonais de outras rainhas
+  - Usa recursão para verificar todas as rainhas já posicionadas.
 
 ---
 
@@ -76,25 +79,35 @@ O código está organizado da seguinte forma:
 
 1. Inicie o interpretador Prolog:
    ```bash
-   swipl 8 rainhas ld.pl
+   swipl 8_Rainhas_Completo.pl
    ```
 
-2. Execute o predicado `resolver`:
+2. Execute para encontrar uma solução:
    ```prolog
-   resolver.
+   solucao(Posicoes).
    ```
 
-3. O tabuleiro com as rainhas posicionadas será exibido no terminal:
+3. O resultado será uma lista representando as linhas das rainhas em cada coluna:
+   ```prolog
+   Posicoes = [1, 5, 8, 6, 3, 7, 2, 4] 
    ```
-   [1,0,0,0,0,0,0,0]
-   [0,0,0,0,1,0,0,0]
-   [0,0,0,0,0,0,1,0]
-   [0,0,0,0,0,0,0,1]
-   [0,1,0,0,0,0,0,0]
-   [0,0,0,1,0,0,0,0]
-   [0,0,0,0,0,1,0,0]
-   [0,0,1,0,0,0,0,0]
+
+4. Para ver todas as 92 soluções:
+   ```prolog
+   findall(P, solucao(P), Solucoes), length(Solucoes, Total).
    ```
+
+---
+
+## Representação da Solução
+
+A solução é representada como uma lista de 8 números, onde cada número representa a linha da rainha em sua respectiva coluna. Por exemplo:
+
+`[1, 5, 8, 6, 3, 7, 2, 4]` significa:
+- Rainha na coluna 1: linha 1
+- Rainha na coluna 2: linha 5
+- ...
+- Rainha na coluna 8: linha 4
 
 ---
 
