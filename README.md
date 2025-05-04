@@ -1,5 +1,8 @@
 # 8QueensSolver
 
+![GitHub](https://img.shields.io/badge/license-MIT-blue)
+![GitHub](https://img.shields.io/badge/SWIProlog-9.2%2B-red)
+
 O **8QueensSolver** é um projeto desenvolvido em **Prolog** para resolver o problema das 8 rainhas. O objetivo é posicionar 8 rainhas em um tabuleiro de xadrez de forma que nenhuma rainha ataque outra. Este projeto foi desenvolvido como parte de um desafio proposto pelo professor de Linguagens Declarativas.
 
 ---
